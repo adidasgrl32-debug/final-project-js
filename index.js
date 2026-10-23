@@ -16,13 +16,14 @@ searchForm.addEventListener('submit', (e) => {
   }
 });
 
+/* SHOW SKELETONS */
 function showSkeletons() {
   const skeletons = Array.from({ length: 10 }, () => {
     return `<div class="movie-card skeleton">
-      <div class="movie-card__img skeleton__img"></div>
-      <h2 class="movie-card__title skeleton__title"></h2>
-      <p class="movie-card__year skeleton__year"></p>
-    </div>`;
+    <div class="movie-card__img skeleton__img"> </div>
+    <h2 class="movie-card__title skeleton__title"></h2>
+    <p class="movie-card__year skeleton__year"></p>
+  </div>`
   }).join("");
 
   moviesGrid.innerHTML = skeletons;
@@ -38,11 +39,15 @@ async function fetchMovies(searchTerm) {
   if (data.Response === "True") {
     currentMovies = data.Search;
     resultsCount.textContent = `Showing: ${searchTerm}`;
-    sortSelect.style.display = 'default';
+    if (sortSelect) {
+      sortSelect.style.display = 'default';
+    }
     displayMovies(currentMovies);
   } else {
     resultsCount.textContent = `Showing: ${searchTerm}`;
-    moviesGrid.innerHTML = `<p class="no-results">No movies found for "${searchTerm}".</p>`;
+    if (moviesGrid) {
+      moviesGrid.innerHTML = `<p class="no-results">No movies found for "${searchTerm}".</p>`;
+    }
     currentMovies = [];
   }
 }
@@ -53,9 +58,9 @@ const displayMovies = (movies) => {
     const poster = movie.Poster !== 'N/A' ? movie.Poster : '';
 
     return `<div class="movie-card">
-      <img class="movie-card__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h2 class="movie-card__title">${movie.title}</h2>
-      <p class="movie-card__year">${movie.release_date?.slice(0, 4) || "N/A"}</p>
+      ${poster ? `<img class="movie-card__img" src="${poster}" alt="${movie.Title}" />` : '<div class="movie-card__poster-placeholder">No Image</div>'}
+      <h2 class="movie-card__title">${movie.Title}</h2>
+      <p class="movie-card__year">${movie.Year}</p>
     </div>
   `;
   }).join("");
@@ -66,12 +71,21 @@ const displayMovies = (movies) => {
 moviesGrid.querySelectorAll('.movie-card__img').forEach(img => {
   img.addEventListener('click', () => {
     const movieTitle = img.alt;
-    const movie = currentMovies.find(m => m.title === movieTitle);
-  });
-});
-};
+    const movie = currentMovies.find(m => m.Title === movieTitle);
 
-/*  SORT MOVIES */
+    if (!movie) return;
+
+    return fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t=${movie.Title}`)
+      .then(response => response.json())
+      .then(data => {
+        const movieDetails = `
+          Title: ${data.Title}
+          Year: ${data.Year}
+        `;
+    });
+  });
+
+/* SORT MOVIES */
 sortSelect.addEventListener('change', (event) => {
   sortMovies(event.target.value);
 });
@@ -88,25 +102,45 @@ if (sortType === 'a to z') {
 }else if (sortType === 'oldest') {
   sortedMovies.sort((a, b) => Number(a.Year) - Number(b.Year));
 }
-
-displayMovies(sortedMovies);
+  return displayMovies(sortedMovies);
 }
 
-function getMovies(event) {
-  getMovies(event.target.value);
+function displayMovieDetails(movie) {
+  const movieDetails = `
+    <h2>${movie.Title}</h2>
+    <p>Year: ${movie.Year}</p>
+  `;
+}
+
+function filterMovies(event) {
+  const searchTerm = event.target.value.toLowerCase();
+  const filteredMovies = currentMovies.filter(movie => movie.Title.toLowerCase().includes(searchTerm));
+  displayMovies(filteredMovies);
+}
+
+function clearSkeletons() {
+  const skeletons = document.querySelectorAll('.skeleton');
+  skeletons.forEach(skeleton => skeleton.remove());
 }
 
 setTimeout(() => {
-  getMovies();
-}, 1000);
+  const skeletons = document.querySelectorAll('.skeleton');
+  skeletons.forEach(skeleton => skeleton.remove());
+});
 
-async function getMovies() {
+async function fetMovieDetails() {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        { title: "Movie 1", release_date: "2020-01-01", poster_path: "/movie1.jpg" },
-        { title: "Movie 2", release_date: "2021-01-01", poster_path: "/movie2.jpg" }
-      ]);
-    }, 1000);
-  });
+    const movieTitle = event.target.alt;
+    const movie = currentMovies.find(m => m.Title === movieTitle);
+
+    if (!movie) {
+      reject(new Error('Movie not found'));
+      return;
+    }
+
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t=${movie.Title}`)
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+  }); 
 }
