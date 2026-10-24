@@ -1,7 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
+  font-family: "Geist", sans-serif
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+p {
+  line-height: 2;
+  text-align: center;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 body {
@@ -17,13 +35,17 @@ body {
   background-position: center;
 }
 
-/* this property will allow us to control the angle of the gradient of the navbar */
+/*
+
+NAVIGATION
+
+*/
+
 @property --nav-angle {
   syntax: "<angle>"; /* declares that valid values for this prop must be a css angle (e.g 135deg, 2rad)*/
-  inherits: false; /* decendants don't inherit this value. */
+  inherits: false;
   initial-value: 135deg;
 }
-
 
 nav {
   background-image: linear-gradient(
@@ -37,15 +59,11 @@ nav {
   color: white;
   padding: 12px 24px 24px;
   display: grid;
-  /* 1fr auto 1fr keeps the middle column centered no matter how wide .logo is */
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   border-radius: 0 0 20% 20%;
   transition: --nav-angle 300ms ease, all 1s ease;
 }
-
-/* Shimmer sweep on nav while the search input is hovered */
-/* this is needed to add the nav animation below */
 
 nav:has(.search-form__input:hover) {
   --nav-angle: 184deg;
@@ -75,8 +93,6 @@ nav:has(.search-form__input:hover) {
   }
 }
 
-/* this is needed to add the nav animation above */
-
 .logo {
   grid-column: 1;
   display: flex;
@@ -84,8 +100,9 @@ nav:has(.search-form__input:hover) {
   align-items: center;
   justify-self: flex-start;
 }
+
 .logo__img {
-  width: 34px;
+  width: 50px;
 }
 
 .logo__title {
@@ -153,10 +170,15 @@ nav:has(.search-form__input:hover) {
   pointer-events: none;
 }
 
+/*
+
+MAIN
+
+*/
+
 main {
   padding: 20px;
   min-height: 96vh;
-  /* min-height at 100vh so higher zooms will not make site look bad */
 }
 
 .controls {
@@ -272,6 +294,11 @@ main {
   }
 }
 
+/*
+
+FOOTER
+
+*/
 footer {
   background: #333;
   color: white;
@@ -280,9 +307,7 @@ footer {
   margin-top: 20px;
 }
 
-
-
-
+/*SMALL PHONES, TABLETS. LARGE SMARTPHONES */
 @media (max-width: 800px) {
   nav {
     grid-template-columns: 1fr;
