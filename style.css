@@ -42,18 +42,14 @@ NAVIGATION
 */
 
 @property --nav-angle {
-  syntax: "<angle>"; /* declares that valid values for this prop must be a css angle (e.g 135deg, 2rad)*/
+  syntax: 135 deg, 2rad;
   inherits: false;
   initial-value: 135deg;
 }
 
 nav {
-  background-image: linear-gradient(
-    var(--nav-angle),
-    /* 135deg, */ /* use 135deg instead of the var(--nav-angle) if you don't plan on navShimmer anim */
-    rgba(0, 0, 0, 0.8),
-    rgba(78, 78, 78, 0.7)
-  );
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8),
+   rgba(78, 78, 78, 0.7));
   background-size: 100% 100%;
   background-repeat: no-repeat;
   color: white;
@@ -189,6 +185,12 @@ main {
   margin: -20px auto 20px;
 }
 
+#resultsCount, #resultsInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #sortSelect {
   border: 1px solid gray;
   padding: 2px;
@@ -254,6 +256,24 @@ main {
 
 .movie-card__poster-placeholder:hover {
   box-shadow: 1px 8px 24px rgb(0, 0, 0, 0.5);
+}
+
+.movies__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movies__loading--spinner {
+  display: none !important;
+}
+
+.movies__loading .movies__loading--spinner {
+  display: block !important;
+}
+
+.fa-spinner {
+  animation: rotate 600ms infinite linear;
 }
 
 /* Skeleton Loading */

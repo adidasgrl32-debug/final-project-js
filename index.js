@@ -31,6 +31,16 @@ function showSkeletons() {
   moviesGrid.innerHTML = skeletons;
 }
 
+function clearSkeletons() {
+  const skeletons = document.querySelectorAll(".skeleton");
+  skeletons.forEach((skeleton) => skeleton.remove());
+}
+
+setTimeout(() => {
+  const skeletons = document.querySelectorAll(".skeleton");
+  skeletons.forEach((skeleton) => skeleton.remove());
+});
+
 /* FETCH MOVIES */
 async function fetchMovies(searchTerm) {
   showSkeletons();
@@ -74,7 +84,6 @@ const displayMovies = (movies) => {
 
   moviesGrid.innerHTML = movieResults;
 
-  // Add event listener after displaying movies //
   moviesGrid.querySelectorAll(".movie-card__img").forEach((img) => {
     img.addEventListener("click", () => {
       const movieTitle = img.alt;
@@ -93,6 +102,13 @@ const displayMovies = (movies) => {
         });
     });
   });
+
+function displayMovieDetails(movie) {
+  const movieDetails = `
+    <h2>${movie.Title}</h2>
+    <p>Year: ${movie.Year}</p>
+  `;
+}
 
   /* SORT MOVIES */
   sortSelect.addEventListener("change", (event) => {
@@ -115,13 +131,6 @@ function sortMovies(sortType) {
   return displayMovies(sortedMovies);
 }
 
-function displayMovieDetails(movie) {
-  const movieDetails = `
-    <h2>${movie.Title}</h2>
-    <p>Year: ${movie.Year}</p>
-  `;
-}
-
 function filterMovies(event) {
   const searchTerm = event.target.value.toLowerCase();
   const filteredMovies = currentMovies.filter((movie) =>
@@ -130,15 +139,9 @@ function filterMovies(event) {
   displayMovies(filteredMovies);
 }
 
-function clearSkeletons() {
-  const skeletons = document.querySelectorAll(".skeleton");
-  skeletons.forEach((skeleton) => skeleton.remove());
-}
-
-setTimeout(() => {
-  const skeletons = document.querySelectorAll(".skeleton");
-  skeletons.forEach((skeleton) => skeleton.remove());
-});
+/*
+PROMISE
+*/
 
 async function fetMovieDetails() {
   return new Promise((resolve, reject) => {

@@ -49,24 +49,23 @@
 
     <main>
       <div class="controls">
-        <p id="resultsInfo" class="resultsInfo"></p>
+        <p id="resultsInfo" class="resultsInfo">
+           <span>Showing: </span>Marvel</p>
          <p id="resultsCount" class="resultsCount"></p>
         <div>
           <label for="sortSelect">Sort:</label>
           <select id="sortSelect">
             <option value="default">Default</option>
-            <option value="a-z">A-Z</option>
-              <!-- <h2>class="movie-card__title">Title</h2> -->
-            <option value="z-a">Z-A</option>
-              <!-- <h2>class="movie-card__title">Title</h2> -->
+            <option value="a to z">A to Z</option>
+            <option value="z to a">Z to A</option>
             <option value="newest">Newest</option>
-               <!-- <p>Year: ${movie.Year}</p> -->
             <option value="oldest">Oldest</option>
-               <!-- <p>Year: ${movie.Year}</p> -->
           </select>
         </div>
+        <div class="movies movies__loading">
+          <i class="fas fa-spinner movies__loading--spinner"></i>
+        </div>
       </div>
-
       <div class="movies-grid" id="moviesGrid">
         <!-- this is where the search results are displayed -->
         <!-- replace the hardcoded values below with dynamic data from your API.  Hint: use .map inside your javascript file (i.e. script.js)-->
