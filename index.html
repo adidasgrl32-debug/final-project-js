@@ -27,130 +27,117 @@
             </svg>
           </button>
         </div>
+        </div>
       </form>
+    <div class="currentMovies">
+      <i class="fas fa-spinner movies__loading--spinner"></i>
+    </div>
     </nav>
 
     <main>
       <div class="controls">
-        <p id="resultsInfo" class="resultsInfo">
+        <p id="resultsInfo" class="resultsInfo">        
         <p id="resultsCount" class="resultsCount">
         <div>
           <label for="sortSelect">Sort:</label>
           <select id="sortSelect">
-            <option value="default">Default</option>
+            <option value="" disabled selected>Sort</option>    
             <option value="a to z">A to Z</option>
             <option value="z to a">Z to A</option>
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
           </select>
         </div>
-        <div class="movies movies__loading">
-          <i class="fas fa-spinner movies__loading--spinner"></i>
-        </div>
-      </div>
+   </div>
       <div class="movies-grid" id="moviesGrid">
-        <div class="movie-card skeleton">
-    <div class="movie-card__img skeleton__img"></div>
-    <h2 class="movie-card__title skeleton__title"></h2>
-    <p class="movie-card__year skeleton__year"></p>
-    </div>
-        <!-- this is where the search results are displayed -->
-        <!-- replace the hardcoded values below with dynamic data from your API.  Hint: use .map inside your javascript file (i.e. script.js)-->
         <div class="movie-card">
           <img
             class="movie-card__img"
-            src="https://m.media-amazon.com/images/M/MV5BNGE0YTVjNzUtNzJjOS00NGNlLTgxMzctZTY4YTE1Y2Y1ZTU4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+            src="https://m.media-amazon.com/images/M/MV5BMTY3NjY0MTQ0Nl5BMl5BanBnXkFtZTcwMzQ2MTc0Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg"
             alt=""
           />
-          <h2 class="movie-card__title">The Avengers</h2>
-          <p class="movie-card__year">2012</p>
+          <h2 class="movie-card__title">Despicable Me</h2>
+          <p class="movie-card__year">2010</p>
         </div>
         <div class="movie-card">
           <img
             class="movie-card__img"
-            src="https://m.media-amazon.com/images/M/MV5BMWEyNDM2ZmQtMmFkNi00MTQ1LTk1MjItMzdlZGJlYmIyYzZlXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+            src="https://m.media-amazon.com/images/M/MV5BMTQxNzY1MjI5NF5BMl5BanBnXkFtZTcwNTI0MDY1OQ@@._V1_QL75_UX380_CR0,20,380,562_.jpg"
             alt=""
           />
-          <h2 class="movie-card__title">Avengers: Endgame</h2>
-          <p class="movie-card__year">2019</p>
+          <h2 class="movie-card__title">Despicable Me 2</h2>
+          <p class="movie-card__year">2013</p>
         </div>
         <div class="movie-card">
           <img
             class="movie-card__img"
-            src="https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+            src="https://m.media-amazon.com/images/M/MV5BNjUyNzQ2MTg3Ml5BMl5BanBnXkFtZTgwNzE4NDM3MTI@._V1_QL75_UX380_CR0,20,380,562_.jpg"
             alt=""
           />
-          <h2 class="movie-card__title">Avengers: Infinity War</h2>
-          <p class="movie-card__year">2018</p>
+          <h2 class="movie-card__title">Despicable Me 3</h2>
+          <p class="movie-card__year">2017</p>
         </div>
         <div class="movie-card">
           <img
             class="movie-card__img"
-            src="https://m.media-amazon.com/images/M/MV5BODBhYTg1NGQtNGVmNS00ZTdiLThjYTYtZDFkNzRiNTZmNDZjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+            src="https://m.media-amazon.com/images/M/MV5BNzY0ZTlhYzgtOTgzZC00ZTg2LTk4NTEtZDllM2E2NGE5Njg2XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
             alt=""
           />
-          <h2 class="movie-card__title">Avengers: Age of Ultron</h2>
-          <p class="movie-card__year">2015</p>
+          <h2 class="movie-card__title">Despicable Me 4</h2>
+          <p class="movie-card__year">2024</p>
         </div>
         <div class="movie-card">
           <img
             class="movie-card__img"
-            src="https://m.media-amazon.com/images/M/MV5BZTA4ZmZlZWQtZDRlYS00ZWZhLTk0MzEtYjExMGIzMTBlZDNlXkEyXkFqcGc@._V1_SX300.jpg"
+            src="https://m.media-amazon.com/images/M/MV5BMTY4NjM2MDUxMV5BMl5BanBnXkFtZTgwMDM0NjA2MDE@._V1_SX300.jpg"
             alt=""
           />
-          <h2 class="movie-card__title">The Avengers</h2>
-          <p class="movie-card__year">1998</p>
+          <h2 class="movie-card__title">Despicable Me: Minion Madness</h2>
+          <p class="movie-card__year">2010</p>
         </div>
-    <div class="movie-card">
-      <img
-        class="movie-card__img"
-        src="https://m.media-amazon.com/images/M/MV5BN2NmMjhiYzctMWQzMC00NDQ1LWIwMDgtM2UyYWU3OGM1NDYwXkEyXkFqcGc@._V1_QL75_UY562_CR20,0,380,562_.jpg"
-            alt=""
-        />
-        <h2 class="movie-card__title">The Avengers: Earth's Mightiest Heroes</h2>
-        <p class="movie-card__year">2010-2012</p>
-        </div>
+      <div class="movie-card">
+        <div class="movie-card__poster-placeholder">
+         Movie Poster<br/>Not Available </div>
+        <h2 class="movie-card__title">Despicable Me: Minion Mayhem 3D</h2>
+        <p class="movie-card__year">2012</p>
+      </div>
       <div class="movie-card">
       <img
         class="movie-card__img"
-        src="https://m.media-amazon.com/images/M/MV5BMTYyMjk0NTMwMl5BMl5BanBnXkFtZTgwNzY0NjAwNzE@._V1_SX300.jpg"
+        src="https://m.media-amazon.com/images/M/MV5BNjAwNzA0NjAyNl5BMl5BanBnXkFtZTgwOTg2MDM4MzE@._V1_SX300.jpg"
         alt=""
         />
-        <h2 class="movie-card__title">Ultimate Avengers: The Movie</h2>
-        <p class="movie-card__year">2006</p>
+        <h2 class="movie-card__title">Despicable Me 2: 3 Mini-Movie Collection</h2>
+        <p class="movie-card__year">2014</p>
         </div>
       <div class="movie-card">
-      <img
-        class="movie-card__img"
-        src="https://m.media-amazon.com/images/M/MV5BMDhhYWIxMzYtNTY2Zi00MTZiLWI2ZDUtYjNiNTY5YzA5MWNkXkEyXkFqcGc@._V1_QL75_UY562_CR16,0,380,562_.jpg"
-            alt=""
-        />
-        <h2 class="movie-card__title">The Avengers</h2>
-        <p class="movie-card__year">1961-1969</p>
+        <div class="movie-card__poster-placeholder">
+          Game Poster<br/>Not Available </div>
+        <h2 class="movie-card__title">Despicable Me</h2>
+        <p class="movie-card__year">2010</p>
         </div>
           <div class="movie-card">
       <img
         class="movie-card__img"
-        src="https://m.media-amazon.com/images/M/MV5BMTY0NTUyMDQwOV5BMl5BanBnXkFtZTgwNjAwMTA0MDE@._V1_QL75_UY562_CR20,0,380,562_.jpg"
-            alt=""
+        src="https://m.media-amazon.com/images/M/MV5BYjk5N2RhOGYtODQxMC00YTJmLWFmZTItMDljY2U5MDMxMDMyXkEyXkFqcGc@._V1_SX300.jpg"
+        alt=""
         />
-        <h2 class="movie-card__title">Avengers Assemble/h2>
-        <p class="movie-card__year">2012-2019</p>
+        <h2 class="movie-card__title">Despicable Me 2: The Music in the Film</h2>
+        <p class="movie-card__year">2013</p>
         </div>
-        <div class="movie-card">
-      <img
-        class="movie-card__img"
-        src="https://m.media-amazon.com/images/M/MV5BZjI3MTI5ZTYtZmNmNy00OGZmLTlhNWMtNjZiYmYzNDhlOGRkL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
-            alt=""
-        />
-        <h2 class="movie-card__title">Ultimate Avengers II</h2>
-        <p class="movie-card__year">2006</p>
-        </div>
-    </div>
+      <div class="movie-card">
+        <div class="movie-card__poster-placeholder">
+          Movie Poster<br/>Not Available </div>
+        <h2 class="movie-card__title">Despicable Me 2: The Minions</h2>
+        <p class="movie-card__year">2013</p>
       </div>
-    </main>
+    </div>
+  </div>
+</main>
+
     <footer>
       <p>Created by Simplified.org. Powered by OMDBapi.</p>
     </footer>
   </body>
+
 </html>

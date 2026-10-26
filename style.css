@@ -35,6 +35,20 @@ body {
   background-position: center;
 }
 
+label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.resultsInfo, .resultsCount {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sortSelect {
+  display: flex;
+}
+
 /*
 
 NAVIGATION
@@ -183,20 +197,15 @@ main {
   align-items: center;
   max-width: 1200px;
   margin: -20px auto 20px;
+  padding: 20px;
 }
 
-#resultsCount, #resultsInfo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#sortSelect {
+.sortSelect {
   border: 1px solid gray;
   padding: 2px;
   border-radius: 16px;
   font-family: "Geist", sans-serif;
-  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .movies-grid {
@@ -262,6 +271,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 60px;
+  font-size: 60px;
+  color: red;
 }
 
 .movies__loading--spinner {
@@ -273,7 +285,16 @@ main {
 }
 
 .fa-spinner {
-  animation: rotate 600ms infinite linear;
+  animation: spinner 750ms infinite linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Skeleton Loading */
